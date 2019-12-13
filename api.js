@@ -89,14 +89,20 @@ api.sendBody = (req, res, method) => {
                             resp.on('end', () => {
                                 console.log('No more data in response.');
                                 
-                                console.log(chunksR)
-                                helpers.response(res, 200, helpers.parseJsonToObject(chunksR[0]))
+                                const objToSend = helpers.parseJsonToObject(chunksR[0])
+                                helpers.response(res, 200, objToSend )
                             });
                         });
 
                         request.on('error', (e) => {
                             console.error(`problem with request: ${e.message}`);
+                            
                         });
+
+                        request.setTimeout(10000, (e) => {
+                            console.log('timeout problem')
+                            helpers.response(res, 408, {'error':'timeout'} )
+                        })
 
                         // Write data to request body
                         if (method !== 'delete') {

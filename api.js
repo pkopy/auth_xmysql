@@ -25,7 +25,7 @@ api.xmysql = (req, res) => {
 api.get = (req, res) => {
     const user = typeof (req.headers.user) == 'string' && req.headers.user.trim().length > 0 ? req.headers.user.trim() : false;
     const token = typeof (req.headers.token) == 'string' && req.headers.token.trim().length === 20 ? req.headers.token.trim() : false;
-    const url = `http://10.10.3.45:3000${req.url}`
+    const url = `http://127.0.0.1:3000${req.url}`
 
     if (user, token) {
         helpers.verifyToken(token, user, (tokenIsValid) => {
@@ -65,7 +65,7 @@ api.sendBody = (req, res, method) => {
             const payloadObj = data.toString()
             // console.log()
             const options = {
-                hostname: '10.10.3.45',
+                hostname: '127.0.0.1',
                 port: 3000,
                 path: req.url,
                 method: req.method,

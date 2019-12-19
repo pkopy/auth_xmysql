@@ -3,7 +3,7 @@ const express = require('express')
 const api = require('./api')
 const cors = require('cors')
 const app = express()
-const port = 8080
+const port = 8003
 const dotenv = require('dotenv');
 const workers = require('./workers')
 dotenv.config();
@@ -23,4 +23,4 @@ app.get('/', (req, res) => {
 
 workers.init()
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Proxy app listening on port ${port}!`))

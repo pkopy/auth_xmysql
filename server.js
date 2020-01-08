@@ -8,18 +8,24 @@ const dotenv = require('dotenv');
 const workers = require('./workers')
 dotenv.config();
 
-app.use(cors())
+app.use(cors());
+
 app.all('/api/*', (req, res) => {
 
     api.xmysql(req, res)
-})
+});
+
 app.all('/login', (req, res) => {
     login.init(req, res); 
 });
 
+app.all('/dynamic', (req, res) => {
+    api.xmysql(req, res)
+});
+
 app.get('/', (req, res) => {
     res.send('Hello WORLD')
-})
+});
 
 workers.init()
 
